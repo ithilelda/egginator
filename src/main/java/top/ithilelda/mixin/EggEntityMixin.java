@@ -25,7 +25,7 @@ public abstract class EggEntityMixin {
 		EggEntity entity = (EggEntity)(Object)this;
 		if (entityHitResult.getEntity() instanceof LivingEntity le) {
 			if (!spawnEntityEgg(le)) {
-				Egginator.LOGGER.warn("The egg for entity " + le.getEntityName() + " has failed to drop!");
+				Egginator.LOGGER.warn("The egg for entity " + le.getName() + " has failed to drop!");
 			}
 		}
 	}
