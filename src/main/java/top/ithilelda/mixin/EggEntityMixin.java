@@ -39,6 +39,7 @@ public abstract class EggEntityMixin {
 			entity.writeNbt(entityNbt);
 			Egginator.LOGGER.debug(entityNbt.toString());
 			entityNbt.remove("Pos");
+			entityNbt.remove("UUID");
 			NbtCompound itemNbt = new NbtCompound();
 			itemNbt.put(EntityType.ENTITY_TAG_KEY, entityNbt);
 			ItemStack spawnEggStack = new ItemStack(spawnEgg);
