@@ -1,11 +1,16 @@
 {
-	"required": true,
-	"package": "top.ithilelda.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-      "EggEntityMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "top.ithilelda.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AnvilScreenHandlerAccessor",
+    "AnvilScreenHandlerMixin",
+    "EggEntityMixin",
+    "ForgingScreenHandlerAccessor",
+    "MobSpawnerLogicAccessor",
+    "SpawnEggItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

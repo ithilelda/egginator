@@ -1,0 +1,13 @@
+package top.ithilelda.mixin;
+
+import net.minecraft.inventory.CraftingResultInventory;
+import net.minecraft.screen.AnvilScreenHandler;
+import net.minecraft.screen.Property;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+@Mixin(AnvilScreenHandler.class)
+public interface AnvilScreenHandlerAccessor {
+    @Accessor
+    Property getLevelCost();
+}
