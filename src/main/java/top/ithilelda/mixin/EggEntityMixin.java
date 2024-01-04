@@ -1,5 +1,6 @@
 package top.ithilelda.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -8,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,6 +30,11 @@ public abstract class EggEntityMixin {
 				Egginator.LOGGER.warn("The egg for entity " + le.getName() + " has failed to drop!");
 			}
 		}
+	}
+
+	@ModifyExpressionValue(at = @At(value = "FIELD", target = "net/minecraft/world/World.isClient:Z"), method = "onCollision")
+	private boolean cancelChickenSpawnOnLivingEntityHit(boolean original, HitResult hitResult) {
+		return original || (hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof LivingEntity);
 	}
 
 	@Unique
