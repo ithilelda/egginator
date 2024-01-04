@@ -1,5 +1,6 @@
 package top.ithilelda.mixin;
 
+import net.minecraft.world.MobSpawnerEntry;
 import net.minecraft.world.MobSpawnerLogic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -30,4 +31,6 @@ public interface MobSpawnerLogicAccessor {
     int getSpawnRange();
     @Accessor
     void setSpawnRange(int spawnRange);
+    @Accessor
+    MobSpawnerEntry getSpawnEntry();
 }
