@@ -33,7 +33,7 @@ public class Configuration {
         return updates;
     }
 
-    public void setUpdateItems(Map<String, SpawnerUpgrade> updates) {
+    public void setUpdates(Map<String, SpawnerUpgrade> updates) {
         this.updates = updates;
     }
 }
