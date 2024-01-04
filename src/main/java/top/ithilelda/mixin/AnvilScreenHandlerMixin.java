@@ -14,17 +14,17 @@ import top.ithilelda.Egginator;
 @Mixin(AnvilScreenHandler.class)
 public class AnvilScreenHandlerMixin {
     @Inject(at = @At(value = "INVOKE",
-                target = "net/minecraft/inventory/CraftingResultInventory.setStack(ILnet/minecraft/item/ItemStack;)V",
-                ordinal = 2),
+            target = "net/minecraft/inventory/CraftingResultInventory.setStack(ILnet/minecraft/item/ItemStack;)V",
+            ordinal = 2),
             method = "updateResult",
             cancellable = true)
     private void UpdateSpawnEgg(CallbackInfo ci) {
-        ForgingScreenHandlerAccessor fsh = (ForgingScreenHandlerAccessor)this;
-        AnvilScreenHandlerAccessor ash = (AnvilScreenHandlerAccessor)this;
+        ForgingScreenHandlerAccessor fsh = (ForgingScreenHandlerAccessor) this;
+        AnvilScreenHandlerAccessor ash = (AnvilScreenHandlerAccessor) this;
         ItemStack input1 = fsh.getInput().getStack(0);
         ItemStack input2 = fsh.getInput().getStack(1);
         String id = Registries.ITEM.getId(input2.getItem()).toString();
-        if(input1.getItem() instanceof SpawnEggItem && Egginator.CONFIGURATION.getUpdateItems().containsKey(id)) {
+        if (input1.getItem() instanceof SpawnEggItem && Egginator.CONFIGURATION.getUpdates().containsKey(id)) {
             ItemStack output = input1.copy();
             NbtCompound oldSpawnerTag = output.getOrCreateSubNbt(Egginator.SPAWNER_TAG_KEY);
             output.setSubNbt(Egginator.SPAWNER_TAG_KEY, Egginator.updateSpawnerTag(oldSpawnerTag, id));

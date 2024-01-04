@@ -1,6 +1,5 @@
 package top.ithilelda.mixin;
 
-import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.Property;
 import org.spongepowered.asm.mixin.Mixin;

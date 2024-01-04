@@ -1,16 +1,16 @@
 package top.ithilelda;
 
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 public class Configuration {
     private boolean blacklist = true;
     private List<String> entities = List.of("minecraft:wither", "minecraft:ender_dragon");
-    private Map<String, SpawnerUpgrade> updateItems = Map.of(
-            "minecraft:nether_star", new SpawnerUpgrade(0,0,0,0,-100,0, 30),
-            "minecraft:netherite_scrap", new SpawnerUpgrade(0,0,4,4,0,0,20),
-            "minecraft:golden_carrot", new SpawnerUpgrade(-20,-80,0,0,0,0,10)
+    private Map<String, SpawnerUpgrade> updates = Map.of(
+            "minecraft:nether_star", new SpawnerUpgrade(0, 0, 0, 0, -100, 0, 30),
+            "minecraft:netherite_scrap", new SpawnerUpgrade(0, 0, 4, 4, 0, 0, 20),
+            "minecraft:golden_carrot", new SpawnerUpgrade(-20, -80, 0, 0, 0, 0, 10)
     );
 
     public boolean isBlacklist() {
@@ -29,11 +29,11 @@ public class Configuration {
         this.entities = entities;
     }
 
-    public Map<String, SpawnerUpgrade> getUpdateItems() {
-        return updateItems;
+    public Map<String, SpawnerUpgrade> getUpdates() {
+        return updates;
     }
 
-    public void setUpdateItems(Map<String, SpawnerUpgrade> updateItems) {
-        this.updateItems = updateItems;
+    public void setUpdateItems(Map<String, SpawnerUpgrade> updates) {
+        this.updates = updates;
     }
 }

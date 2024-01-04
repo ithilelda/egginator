@@ -21,7 +21,7 @@ public class SpawnEggItemMixin {
             target = "net/minecraft/world/World.updateListeners(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/block/BlockState;I)V"),
             method = "useOnBlock")
     private void setSpawnerPropertyWhenUsed(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, @Local BlockEntity blockEntity, @Local ItemStack itemStack) {
-        MobSpawnerLogicAccessor logic = (MobSpawnerLogicAccessor)((MobSpawnerBlockEntity)blockEntity).getLogic();
+        MobSpawnerLogicAccessor logic = (MobSpawnerLogicAccessor) ((MobSpawnerBlockEntity) blockEntity).getLogic();
         // first, we let the spawner spawn exact copies of our entity instead of just the type if there is nbt tags stored.
         if (itemStack.getSubNbt(EntityType.ENTITY_TAG_KEY) != null) {
             logic.getSpawnEntry().getNbt().copyFrom(itemStack.getSubNbt(EntityType.ENTITY_TAG_KEY));
