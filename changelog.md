@@ -14,3 +14,6 @@
   - spawn egg upgrade in anvil can correctly account for the material count.
   - fixes a bug where an egg could hit and trap more than 1 entity.
   - removes OnGround tag to prevent grounded capture stuck in half air if spawn ungrounded.
+- 1.1.2
+  - now there doesn't need any player online for the spawner to work if required player range is lower than 0.
+  - right-click sets the spawner normally as vanilla. Sneak-right-click sets the spawner to spawn exact copies.

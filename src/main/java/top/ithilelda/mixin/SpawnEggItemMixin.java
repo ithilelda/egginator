@@ -22,8 +22,8 @@ public class SpawnEggItemMixin {
             method = "useOnBlock")
     private void setSpawnerPropertyWhenUsed(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, @Local BlockEntity blockEntity, @Local ItemStack itemStack) {
         MobSpawnerLogicAccessor logic = (MobSpawnerLogicAccessor) ((MobSpawnerBlockEntity) blockEntity).getLogic();
-        // first, we let the spawner spawn exact copies of our entity instead of just the type if there is nbt tags stored.
-        if (itemStack.getSubNbt(EntityType.ENTITY_TAG_KEY) != null) {
+        // first, we let the spawner spawn exact copies of our entity instead of just the type if there is nbt tags stored, and we are crouching.
+        if (context.getPlayer() != null && context.getPlayer().isSneaking() && itemStack.getSubNbt(EntityType.ENTITY_TAG_KEY) != null) {
             logic.getSpawnEntry().getNbt().copyFrom(itemStack.getSubNbt(EntityType.ENTITY_TAG_KEY));
         }
         // then we update the spawner according to the spawner tags.
@@ -36,6 +36,5 @@ public class SpawnEggItemMixin {
             logic.setSpawnRange(logic.getSpawnRange() + spawnerTags.getInt("SpawnRange"));
             logic.setRequiredPlayerRange(logic.getRequiredPlayerRange() + spawnerTags.getInt("RequiredPlayerRange"));
         }
-
     }
 }
