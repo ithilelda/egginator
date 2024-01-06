@@ -10,3 +10,7 @@
   - prevents chicks from spawning when hitting a living entity.
   - can use anvil to upgrade spawn eggs.
   - will spawn exact copies if used on a spawner block.
+- 1.1.1
+  - spawn egg upgrade in anvil can correctly account for the material count.
+  - fixes a bug where an egg could hit and trap more than 1 entity.
+  - removes OnGround tag to prevent grounded capture stuck in half air if spawn ungrounded.

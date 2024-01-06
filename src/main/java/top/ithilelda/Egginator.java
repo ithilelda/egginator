@@ -52,24 +52,24 @@ public class Egginator implements ModInitializer {
         return CONFIGURATION.isBlacklist() ^ CONFIGURATION.getEntities().contains(entityId);
     }
 
-    public static NbtCompound updateSpawnerTag(NbtCompound oldSpawnerTag, String id) {
+    public static NbtCompound updateSpawnerTag(NbtCompound oldSpawnerTag, String id, int count) {
         SpawnerUpgrade upgrade = CONFIGURATION.getUpdates().get(id);
         if (upgrade != null) {
-            oldSpawnerTag.putInt("MinSpawnDelay", oldSpawnerTag.getInt("MinSpawnDelay") + upgrade.getMinSpawnDelay());
-            oldSpawnerTag.putInt("MaxSpawnDelay", oldSpawnerTag.getInt("MaxSpawnDelay") + upgrade.getMaxSpawnDelay());
-            oldSpawnerTag.putInt("MaxNearbyEntities", oldSpawnerTag.getInt("MaxNearbyEntities") + upgrade.getMaxNearbyEntities());
-            oldSpawnerTag.putInt("SpawnCount", oldSpawnerTag.getInt("SpawnCount") + upgrade.getSpawnCount());
-            oldSpawnerTag.putInt("SpawnRange", oldSpawnerTag.getInt("SpawnRange") + upgrade.getSpawnRange());
-            oldSpawnerTag.putInt("RequiredPlayerRange", oldSpawnerTag.getInt("RequiredPlayerRange") + upgrade.getRequiredPlayerRange());
+            oldSpawnerTag.putInt("MinSpawnDelay", oldSpawnerTag.getInt("MinSpawnDelay") + upgrade.getMinSpawnDelay() * count);
+            oldSpawnerTag.putInt("MaxSpawnDelay", oldSpawnerTag.getInt("MaxSpawnDelay") + upgrade.getMaxSpawnDelay() * count);
+            oldSpawnerTag.putInt("MaxNearbyEntities", oldSpawnerTag.getInt("MaxNearbyEntities") + upgrade.getMaxNearbyEntities() * count);
+            oldSpawnerTag.putInt("SpawnCount", oldSpawnerTag.getInt("SpawnCount") + upgrade.getSpawnCount() * count);
+            oldSpawnerTag.putInt("SpawnRange", oldSpawnerTag.getInt("SpawnRange") + upgrade.getSpawnRange() * count);
+            oldSpawnerTag.putInt("RequiredPlayerRange", oldSpawnerTag.getInt("RequiredPlayerRange") + upgrade.getRequiredPlayerRange() * count);
         }
         return oldSpawnerTag;
     }
 
-    public static int getUpgradeExpCost(String id) {
+    public static int getUpgradeExpCost(String id, int count) {
         int result = 0;
         SpawnerUpgrade upgrade = CONFIGURATION.getUpdates().get(id);
         if (upgrade != null) {
-            result = upgrade.getExpCost();
+            result = upgrade.getExpCost() * count;
         }
         return result;
     }

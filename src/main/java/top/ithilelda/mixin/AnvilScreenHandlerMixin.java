@@ -27,9 +27,9 @@ public class AnvilScreenHandlerMixin {
         if (input1.getItem() instanceof SpawnEggItem && Egginator.CONFIGURATION.getUpdates().containsKey(id)) {
             ItemStack output = input1.copy();
             NbtCompound oldSpawnerTag = output.getOrCreateSubNbt(Egginator.SPAWNER_TAG_KEY);
-            output.setSubNbt(Egginator.SPAWNER_TAG_KEY, Egginator.updateSpawnerTag(oldSpawnerTag, id));
+            output.setSubNbt(Egginator.SPAWNER_TAG_KEY, Egginator.updateSpawnerTag(oldSpawnerTag, id, input2.getCount()));
             fsh.getOutput().setStack(0, output);
-            ash.getLevelCost().set(Egginator.getUpgradeExpCost(id));
+            ash.getLevelCost().set(Egginator.getUpgradeExpCost(id, input2.getCount()));
             ci.cancel();
         }
     }
