@@ -21,7 +21,7 @@ import top.ithilelda.Egginator;
 public abstract class EggEntityMixin {
 
     @Inject(at = @At("HEAD"), method = "onEntityHit")
-    private void getHit(EntityHitResult entityHitResult, CallbackInfo ci) {
+    private void spawnEntityEggOnLivingEntityHit(EntityHitResult entityHitResult, CallbackInfo ci) {
         if (entityHitResult.getEntity() instanceof LivingEntity le && Egginator.canCreateSpawnEgg(le)) {
             if (!spawnEntityEgg(le)) {
                 Egginator.LOGGER.warn("The egg for entity " + le.getName() + " has failed to drop!");
@@ -29,9 +29,16 @@ public abstract class EggEntityMixin {
         }
     }
 
-    @ModifyExpressionValue(at = @At(value = "FIELD", target = "net/minecraft/world/World.isClient:Z"), method = "onCollision")
-    private boolean cancelChickenSpawnOnLivingEntityHit(boolean original, HitResult hitResult) {
-        return original || (hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof LivingEntity);
+    @ModifyExpressionValue(at = @At(value = "INVOKE", target = "net/minecraft/util/math/random/Random.nextInt(I)I", ordinal = 0),
+            method = "onCollision")
+    private int cancelChickSpawnOnLivingEntityHit(int original, HitResult hitResult) {
+        // if we are hitting a living entity, we never spawn an egg (a none zero value will do).
+        if ((hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof LivingEntity)) {
+            return 1;
+        }
+        else {
+            return original;
+        }
     }
 
     @Unique
@@ -46,6 +53,7 @@ public abstract class EggEntityMixin {
             entityNbt.remove("UUID");
             entityNbt.remove("Motion");
             entityNbt.remove("Rotation");
+            entityNbt.remove("OnGround");
             NbtCompound itemNbt = new NbtCompound();
             itemNbt.put(EntityType.ENTITY_TAG_KEY, entityNbt);
             ItemStack spawnEggStack = new ItemStack(spawnEgg);
