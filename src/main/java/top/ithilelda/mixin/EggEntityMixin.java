@@ -22,7 +22,8 @@ public abstract class EggEntityMixin {
 
     @Inject(at = @At("HEAD"), method = "onEntityHit")
     private void spawnEntityEggOnLivingEntityHit(EntityHitResult entityHitResult, CallbackInfo ci) {
-        if (entityHitResult.getEntity() instanceof LivingEntity le && Egginator.canCreateSpawnEgg(le)) {
+        EggEntity egg = (EggEntity)(Object)this;
+        if (!egg.getWorld().isClient && entityHitResult.getEntity() instanceof LivingEntity le && Egginator.canCreateSpawnEgg(le)) {
             if (!spawnEntityEgg(le)) {
                 Egginator.LOGGER.warn("The egg for entity " + le.getName() + " has failed to drop!");
             }
