@@ -21,6 +21,7 @@ public class Egginator implements ModInitializer {
     // That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger("egginator");
     public static final String SPAWNER_TAG_KEY = "SpawnerTag";
+    public static final String EMBEDDED_KEY = "EmbeddedTag";
     public static Configuration CONFIGURATION = new Configuration();
     ;
 
