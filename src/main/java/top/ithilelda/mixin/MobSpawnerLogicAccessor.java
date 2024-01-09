@@ -45,4 +45,7 @@ public interface MobSpawnerLogicAccessor {
 
     @Accessor
     MobSpawnerEntry getSpawnEntry();
+
+    @Accessor
+    void setSpawnEntry(MobSpawnerEntry mobSpawnerEntry);
 }
