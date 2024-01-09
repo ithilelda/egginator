@@ -1,10 +1,12 @@
 package top.ithilelda;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
+import net.minecraft.resource.ResourceType;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,7 @@ public class Egginator implements ModInitializer {
         // Proceed with mild caution.
 
         LOGGER.info("Egginator initialized.");
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ConfigurationReloadListener());
 
         Yaml yaml = new Yaml();
 
