@@ -1,5 +1,6 @@
 package top.ithilelda.mixin;
 
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.world.MobSpawnerEntry;
 import net.minecraft.world.MobSpawnerLogic;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,4 +49,10 @@ public interface MobSpawnerLogicAccessor {
 
     @Accessor
     void setSpawnEntry(MobSpawnerEntry mobSpawnerEntry);
+
+    @Accessor
+    DataPool<MobSpawnerEntry> getSpawnPotentials();
+
+    @Accessor
+    void setSpawnPotentials(DataPool<MobSpawnerEntry> spawnPotentials);
 }

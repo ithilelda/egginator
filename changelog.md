@@ -17,3 +17,5 @@
 - 1.1.2
   - now there doesn't need any player online for the spawner to work if required player range is lower than 0.
   - right-click sets the spawner normally as vanilla. Sneak-right-click sets the spawner to spawn exact copies.
+- 1.1.3
+  - spawner will be deactivated when powered by redstone.
